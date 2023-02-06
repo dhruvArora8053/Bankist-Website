@@ -31,8 +31,9 @@ document.addEventListener('keydown', function (e) {
 });
 
 //////////////////////////////////////////////////
-//////////////////////////////////////////////////
 //LECTURES-
+//////////////////////////////////////////////////
+/*
 //Selecting, Creating, Inserting and Deleting elements:-
 //selecting elements:
 console.log(document.documentElement);
@@ -79,7 +80,10 @@ document
     //traditional
     //message.parentElement.removeChild(message);
   });
-
+*/
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+/*
 //Styles, Attributes and Classes:-
 //Styles:
 message.style.backgroundColor = '#37383d'; //inline style
@@ -134,3 +138,38 @@ logo.classList.contains('c', 'j'); //not includes
 
 //Don't use this
 logo.className='jonas' //don't use this because this will override all the existing classes and also it allows us to put only one class on any element.
+*/
+//////////////////////////////////////////////////
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect(); //it gets the position of element
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect()); //distance between viewport and butoon
+
+  console.log('Current scroll (x/y)', window.pageXOffset, pageYOffset); //Current scroll (x/y) 0 250, y coordinate is here the  distance between the current position of the viewport and at the top of page
+
+  console.log(
+    'Current height/width of viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  //Scrolling
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // ); //s1coords.top and s1coords.left are relative to viewport, so viewport dist from top+ current scroll= total distance
+
+  //traditional way:
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+
+  //modern way:
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
