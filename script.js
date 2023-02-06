@@ -79,3 +79,58 @@ document
     //traditional
     //message.parentElement.removeChild(message);
   });
+
+//Styles, Attributes and Classes:-
+//Styles:
+message.style.backgroundColor = '#37383d'; //inline style
+message.style.width = '120%'; //inline style
+
+console.log(message.style.height); //output nothing, it is because this thing only works for inline styles that we set ourselves using the style property.
+
+console.log(message.style.backgroundColor); //output rgb(55, 56, 61)
+
+//to get all the styles:
+console.log(getComputedStyle(message).color); //rgb(187, 187, 187)
+console.log(getComputedStyle(message).height); //47.5px
+
+//increasing height by 40px
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height + 10) + 30 + 'px';
+
+console.log(getComputedStyle(message).height); //77.5px
+
+//CSS variables:
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+//Attributes:
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.src); //http://127.0.0.1:5500/img/logo.png - absolute link
+console.log(logo.className);
+
+//setting up:
+logo.alt = 'Beautiful Minimalist Logo';
+console.log(logo.alt);
+
+//Non-Standard
+console.log(logo.designer); //undefined,
+//other way to get it:
+console.log(logo.getAttribute('designer')); //jonas
+logo.setAttribute('company', 'Bankist'); //new attribute created
+console.log(logo.getAttribute('src')); //img/logo.png - relative link
+
+const link = document.querySelector('.nav__link--btn');
+console.log(link.href); //http://127.0.0.1:5500/index.html#
+console.log(link.getAttribute('href')); //#
+
+//Data Attributes:
+console.log(logo.dataset.versionNumber); //3.0, addded a property of data and then log it here
+
+//Classes:
+logo.classList.add('c', 'j');
+logo.classList.remove('c', 'j');
+logo.classList.toggle('c');
+logo.classList.contains('c', 'j'); //not includes
+
+//Don't use this
+logo.className='jonas' //don't use this because this will override all the existing classes and also it allows us to put only one class on any element.
