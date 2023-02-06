@@ -140,6 +140,7 @@ logo.classList.contains('c', 'j'); //not includes
 logo.className='jonas' //don't use this because this will override all the existing classes and also it allows us to put only one class on any element.
 */
 //////////////////////////////////////////////////
+//implementing smooth scrolling
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
@@ -173,3 +174,37 @@ btnScrollTo.addEventListener('click', function (e) {
   //modern way:
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+//////////////////////////////////////////////////
+//LECTURE
+/*
+//Types of events and event handlers:-
+const h1 = document.querySelector('h1');
+
+h1.addEventListener('mouseenter', function (e) {
+  alert('addEventListener: Great! You are reading the heading :D');
+});
+
+//another way of adding event (traditional):
+h1.onmouseenter = function (e) {
+  alert('onmouseenter: Great! You are reading the heading :D');
+};
+
+//why addEventListener is better:
+//1. it allows us to add multiple event listeners to the same event all we just need to change is function
+//tradional way will override the initial events
+
+//2. we can actually remove an event handler incase we don't need it anymore:
+const alertH1 = function (e) {
+  alert('addEventListener: Great! You are reading the heading :D');
+
+  h1.removeEventListener('mouseenter', alertH1);
+  //if you now hover again then nothing will happen
+};
+
+h1.addEventListener('mouseenter', alertH1);
+
+//one more way of handling events and it should be avoided:
+//<h1 onclick="alert('HTML alert')"> 
+//it is done on html document itself
+*/
+//////////////////////////////////////////////////
