@@ -32,7 +32,7 @@ document.addEventListener('keydown', function (e) {
 
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
-//LECTURES
+//LECTURES-
 //Selecting, Creating, Inserting and Deleting elements:-
 //selecting elements:
 console.log(document.documentElement);
