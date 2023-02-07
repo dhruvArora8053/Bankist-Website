@@ -208,4 +208,49 @@ h1.addEventListener('mouseenter', alertH1);
 //it is done on html document itself
 */
 //////////////////////////////////////////////////
+//Event Propagation in Practice(bubbling and capturing):-
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min) + 1 + min);
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+console.log(randomColor(0, 255));
 
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('LINK', e.target);
+  //e.target is where the event originated that is where the event first happend
+  console.log(e.currentTarget);
+  //e.currentTarget is ideed the element on which the current handler is attached.
+
+  //STOP Propagation:
+  //e.stopPropagation();
+});
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('CONTAINER', e.target);
+  console.log(e.currentTarget);
+  //Note:-
+  console.log(e.currentTarget === this); //true
+});
+//nav__links element also got it's own random background color so based on what we learned the event actually happens at the document root and from there it then travels down to the target element and so in this case that is 'Features' link and then from there it bubbles up and bubbling up means that basically it's as if the event had also happend in all of the parent elements and so again, it is as if the click event here on the 'Features' link had also happened right here in the nav__links element.
+
+//Now, when we click only outside to the parent element the child element does not change it's color it is because of bubbling which it only bubbles up from child to parent.
+
+document.querySelector('.nav').addEventListener(
+  'click',
+  function (e) {
+    this.style.backgroundColor = randomColor();
+    console.log('NAV', e.target);
+    console.log(e.currentTarget);
+  },
+  true
+);
+//same process as above happening here just third element got added.
+
+//when we console.log(e.target) all the three event handlers have same class that is 'nav__link' because we clicked to the 'Features' element and then it bubbles up to it's parents
+
+//when we console.log(e.currentTarget) the all the elements have there on classes that is because of e.currentTarget
+
+//Note:-Event listeners here is only listening for events in bubbling phase(they are not listening from root to the target element) but not in the capturing phase so that is because of the default behavior of addEventListener method and the reason for that is that the capturing phase is usually irrelevant for us, it's just not that useful.
+//However if want to observe the capturing phase then we have to add the third parameter in the addEventListener funtion which is 'true' so bubbling phase will stop and you will capture the capturing event
