@@ -287,3 +287,53 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
 });
+/////////////////////////////////////////////////
+/*
+//DOM Traversing:-
+const h1 = document.querySelector('h1');
+
+//Going Downwards: selecting child elements
+console.log(h1.querySelectorAll('.highlight'));
+
+console.log(h1.childNodes);
+//direct childs
+
+console.log(h1.children);
+//only direct child elements
+
+h1.firstElementChild.style.color = 'white';
+//first child element of h1 got color white
+
+h1.lastElementChild.style.color = 'orangered';
+//last child element of h1 got color orangered
+
+//Going Upwards: selecting parent elements
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+h1.closest('.header').style.background = 'var(--gradient-secondary)';
+//select the closest parent with the class header even though with the mutiple elements with class header
+
+h1.closest('h1').style.background = 'var(--gradient-primary)';
+//h1 element itself
+
+//Note: 'query' finds the children elements no matter how deep they are in dom while 'closest' finds parents.
+
+//Going Sideways: selecting sibling elements
+//note: in javascript we can only access direct siblings so basically the previous and the next one
+//for elements
+console.log(h1.previousElementSibling); //null
+console.log(h1.nextElementSibling); //h4
+
+//for nodes
+console.log(h1.previousSibling); //#text
+console.log(h1.nextSibling); //#text
+
+console.log(h1.parentElement.children);
+//contains all siblings h1 itself
+
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) el.style.transform = 'scale(0.5)';
+});
+*/
+/////////////////////////////////////////////////
