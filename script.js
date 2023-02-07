@@ -208,6 +208,7 @@ h1.addEventListener('mouseenter', alertH1);
 //it is done on html document itself
 */
 //////////////////////////////////////////////////
+/*
 //Event Propagation in Practice(bubbling and capturing):-
 const randomInt = (min, max) =>
   Math.floor(Math.random() * (max - min) + 1 + min);
@@ -254,3 +255,35 @@ document.querySelector('.nav').addEventListener(
 
 //Note:-Event listeners here is only listening for events in bubbling phase(they are not listening from root to the target element) but not in the capturing phase so that is because of the default behavior of addEventListener method and the reason for that is that the capturing phase is usually irrelevant for us, it's just not that useful.
 //However if want to observe the capturing phase then we have to add the third parameter in the addEventListener funtion which is 'true' so bubbling phase will stop and you will capture the capturing event
+*/
+/////////////////////////////////////////////////
+//Event Delegation:-
+
+//page navigation:
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+//here exact same function is now attached to these three elements and that's kind of unecessary, ofcourse it would be fine for only three elements but what if we had 1000, or like 10,000 elements? If we were to attach an event handler to 10,000 elements like above with the forEach function then we would effectively be creating 10,000 copies of above same function and so that would then certainly impact the performance. And it's really not a clean solution in that case and so better solution withoud a doubt is to use event delegation:
+
+//1. Add event listener to common parent element
+//2. Determine what element orginated the event so that we can work with that element.
+
+//parent element:
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  //we need to find where the event actually and that is stored in:
+  e.preventDefault();
+  console.log(e.target);
+
+  //Matching strategy:
+  if (e.target.classList.contains('nav__link')) {
+    console.log('link');
+    const id = e.target.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
