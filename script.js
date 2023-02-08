@@ -363,3 +363,35 @@ tabsContainer.addEventListener('click', function (e) {
     .classList.add('operations__content--active');
 });
 //////////////////////////////////////////////////
+//Passing Argument to Event Handlers:-
+
+//Menu fade animation:
+const nav = document.querySelector('.nav');
+
+const handleHover = function (e) {
+  console.log(this, e.currentTarget);
+
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(el => {
+      if (el !== link) {
+        el.style.opacity = this;
+      }
+    });
+    logo.style.opacity = this;
+  }
+};
+
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+
+nav.addEventListener('mouseout', handleHover.bind(1));
+//bind mehtod: creates a copy of function and set this keyword equal to argument
+//in here bind method created a copy of handleHover function set it's this keyword to the aruments 0.5 and 0.1
+//and remember it is impossible to give more than one argument to eventHandler function so if we wanna pass multiple arguments we can give this keyword an argument of array or object
+
+//mouseover Vs mouseenter
+//mouseover bubbles but mouseenter doesn't
+//mouseenter opp is mouseleave and mouseover's is mouseout
