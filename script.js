@@ -399,12 +399,28 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 ////////////////////////////////////////////////
 //Implementing a Sticky Navigation:-
 const initialCoords = section1.getBoundingClientRect();
-console.log(initialCoords);
+//console.log(initialCoords);
 
 window.addEventListener('scroll', function () {
-  console.log(window.scrollY);
+  //console.log(window.scrollY);
   //distance from top of viewport to the top of the page
 
   if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
   else nav.classList.remove('sticky');
 });
+/////////////////////////////////////////////////
+//A Better Way: Intersection Observer API:-
+const obsCallback = function (entries, observer) {
+  entries.forEach(entry => {
+    console.log(entry);
+  });
+};
+
+const obsOptions = {
+  root: null, //here null is viewport
+  threshold: 0.1,
+};
+
+const observer = new IntersectionObserver();
+obsCallback, obsOptions;
+observer.observe(section1);
