@@ -385,6 +385,7 @@ const handleHover = function (e) {
   }
 };
 
+//Passing 'argument through this keyword into handler using bind method
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 
 nav.addEventListener('mouseout', handleHover.bind(1));
@@ -395,3 +396,15 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 //mouseover Vs mouseenter
 //mouseover bubbles but mouseenter doesn't
 //mouseenter opp is mouseleave and mouseover's is mouseout
+////////////////////////////////////////////////
+//Implementing a Sticky Navigation:-
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords);
+
+window.addEventListener('scroll', function () {
+  console.log(window.scrollY);
+  //distance from top of viewport to the top of the page
+
+  if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
