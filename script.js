@@ -398,29 +398,58 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 //mouseenter opp is mouseleave and mouseover's is mouseout
 ////////////////////////////////////////////////
 //Implementing a Sticky Navigation:-
-const initialCoords = section1.getBoundingClientRect();
-//console.log(initialCoords);
+// const initialCoords = section1.getBoundingClientRect();
+// //console.log(initialCoords);
 
-window.addEventListener('scroll', function () {
-  //console.log(window.scrollY);
-  //distance from top of viewport to the top of the page
+// window.addEventListener('scroll', function () {
+//   //console.log(window.scrollY);
+//   //distance from top of viewport to the top of the page
 
-  if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
-  else nav.classList.remove('sticky');
-});
+//   if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+//   else nav.classList.remove('sticky');
+// });
 /////////////////////////////////////////////////
 //A Better Way: Intersection Observer API:-
-const obsCallback = function (entries, observer) {
-  entries.forEach(entry => {
-    console.log(entry);
-  });
+//Well, this API allows our code to basically observe changes to the way that a certain target element intersects another element, or the way it intersects viewport.
+
+// const obsCallback = function (entries, observer) {
+//   //entries here are actually an array of threshold entries
+
+//   entries.forEach(entry => {
+//     console.log(entry);
+//   });
+//   //so this callback function here will get called each time that the observed element so our target element(section1) here is intersecting the root element at the threshold that we defined.
+// };
+
+// const obsOptions = {
+//   root: null, //root is the element that target(section1) is intersecting
+//   //here null means the viewport so target section1 will now intersect the viewport
+//   threshold: [0, 0.2], //this is basically the percentage of intersection at which the observer callback will be called.
+//   //0% here means that basically our callback will trigger each time that the target element moves completey out of the view and also as as it enters the view and so that's because the callback function will be called when the threshold is passed when moving into the view and when moving out of the view on the other hand if we specified 1 here in the array then that means that the callback will only be called when 100% of the target ia actually visible in the viewport.
+// };
+
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+// observer.observe(section1);
+
+const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+//console.log(navHeight);
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  //console.log(entry);
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
 };
 
-const obsOptions = {
-  root: null, //here null is viewport
-  threshold: 0.1,
-};
-
-const observer = new IntersectionObserver();
-obsCallback, obsOptions;
-observer.observe(section1);
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`, //rootMargin here is if you wanna strtch your header if yes how much,
+  //-90px means at the end of header strecth less 90px
+  //90px means at the end of header stretch more 90px
+});
+headerObserver.observe(header);
+/////////////////////////////////////////////////
+//I love coding I can do it all the time
