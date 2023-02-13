@@ -446,10 +446,11 @@ const stickyNav = function (entries) {
 const headerObserver = new IntersectionObserver(stickyNav, {
   root: null,
   threshold: 0,
-  rootMargin: `-${navHeight}px`, //rootMargin here is if you wanna strtch your header if yes how much,
+  rootMargin: `-${navHeight}px`, //rootMargin here is if you wanna stretch your header if yes how much,
   //-90px means at the end of header strecth less 90px
   //90px means at the end of header stretch more 90px
 });
 headerObserver.observe(header);
 /////////////////////////////////////////////////
 //I love coding I can do it all the time
+//Revealing sections on scroll:-
