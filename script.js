@@ -454,3 +454,16 @@ headerObserver.observe(header);
 /////////////////////////////////////////////////
 //I love coding I can do it all the time
 //Revealing sections on scroll:-
+const allSections = document.querySelectorAll('.section');
+
+const revealSection = function (entries, observer) {};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  //threshold: 0.15,
+});
+allSections.forEach(function (section) {
+  sectionObserver.observe(section);
+  section.classList.add('section--hidden');
+});
+
