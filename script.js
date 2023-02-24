@@ -396,6 +396,7 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 //mouseover Vs mouseenter
 //mouseover bubbles but mouseenter doesn't
 //mouseenter opp is mouseleave and mouseover's is mouseout
+
 ////////////////////////////////////////////////
 //Implementing a Sticky Navigation:-
 // const initialCoords = section1.getBoundingClientRect();
