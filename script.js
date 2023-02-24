@@ -409,6 +409,7 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 //   if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
 //   else nav.classList.remove('sticky');
 // });
+
 /////////////////////////////////////////////////
 //A Better Way: Intersection Observer API:-
 //Well, this API allows our code to basically observe changes to the way that a certain target element intersects another element, or the way it intersects viewport.
